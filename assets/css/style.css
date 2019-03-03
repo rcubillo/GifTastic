@@ -10,3 +10,7 @@ body{
 #adding-animals{
     background-image: url("../images/dark-honeycomb.png");
 } */
+
+div{
+    float:left;
+}
