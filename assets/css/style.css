@@ -1,0 +1,12 @@
+body{
+    background-image: url("../images/dynamic-style.png");
+}
+
+.jumbotron{
+    background-image: url("../images/dark-honeycomb.png");
+}
+
+/* 
+#adding-animals{
+    background-image: url("../images/dark-honeycomb.png");
+} */
