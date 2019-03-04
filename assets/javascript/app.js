@@ -1,14 +1,14 @@
-var videogames = ["Cat", "Dog", "Mosquitoe", "Fly"];
+var sports = ["Soccer", "Futbol", "Running", "Mixed Martial Arts", "Karate"];
 
 
  // Function for dumping the JSON content for each button into the div
- function displayAnimal() {
+ function displaySports() {
        //Emptys the gifs div before anything
        $("#gifs-appear-here").empty();
 
-    var animal = $(this).attr("data-name");
+    var sport = $(this).attr("data-name");
     //adding the queryURL with my key and limit of 10 gifts
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=k0jh54lFDhHqPQvwTH0HM1MtO6WdkwoH&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&api_key=k0jh54lFDhHqPQvwTH0HM1MtO6WdkwoH&limit=10";
 
     $.ajax({
       url: queryURL,
@@ -20,61 +20,58 @@ var videogames = ["Cat", "Dog", "Mosquitoe", "Fly"];
          // Looping through each result item
          for (var i = 0; i < results.length; i++) {
             // Creating and storing a div tag
-            var animalDiv = $("<div>");
+            var sportDiv = $("<div>");
             // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + results[i].rating);
             // Creating and storing an image tag
-            var animalImage = $("<img>");
+            var sportImage = $("<img>");
             // Setting the src attribute of the image to a property pulled off the result item. Using
             //fixed_height_small_still to get a static image.
-            animalImage.attr("src", results[i].images.fixed_height_still.url);
-            animalImage.attr("data-still" , results[i].images.fixed_height_still.url);
-            animalImage.attr("data-animate" , results[i].images.fixed_height.url);
-            animalImage.attr("data-state" , "still");
-            animalImage.attr( "id" , "gifImages");
+            sportImage.attr("src", results[i].images.fixed_height_still.url);
+            sportImage.attr("data-still" , results[i].images.fixed_height_still.url);
+            sportImage.attr("data-animate" , results[i].images.fixed_height.url);
+            sportImage.attr("data-state" , "still");
+            sportImage.attr( "id" , "sportsrock");
 
-            // Appending the paragraph and image tag to the animalDiv
-            animalDiv.append(p);
-            animalDiv.append(animalImage);
-            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-            $("#gifs-appear-here").prepend(animalDiv);
+            // Appending the paragraph and image tag to the sportDiv
+            sportDiv.append(p);
+            sportDiv.append(sportImage);
+            // Prependng the sportDiv to the HTML page in the "#gifs-appear-here" div
+            $("#gifs-appear-here").prepend(sportDiv);
           }
     });
   }
 
 
- // Function for displaying videogames data
+ // Function for displaying sports data
  function renderButtons() {
     // Deleting the buttons prior to adding new movies
     // (this is necessary otherwise you will have repeat buttons)
     $("#buttons-view").empty();
     // Looping through the array of movies
-    for (var i = 0; i < videogames.length; i++) {
+    for (var i = 0; i < sports.length; i++) {
       // Then dynamically generating buttons for each movie in the array
       // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-      var a = $("<button>");
+      var a = $("<button class='btn btn-secondary'>");
       // Adding a class of movie to our button
-      a.addClass("animal");
+      a.addClass("sport");
       // Adding a data-attribute
-      a.attr("data-name", videogames[i]);
+      a.attr("data-name", sports[i]);
       // Providing the initial button text
-      a.text(videogames[i]);
+      a.text(sports[i]);
       // Adding the button to the buttons-view div
       $("#buttons-view").append(a);
     }
   }
 
    // This function handles events where one button is clicked
-   $("#add-animal").on("click", function(event) {
+   $("#add-sport").on("click", function(event) {
     event.preventDefault();
-
     // This line grabs the input from the textbox
-    var animal = $("#animal-input").val().trim();
-
+    var sport = $("#animal-input").val().trim();
     // Adding the movie from the textbox to our array
-    videogames.push(animal);
-    console.log(videogames);
-
+    sports.push(sport);
+    console.log(sports);
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
   });
@@ -82,7 +79,6 @@ var videogames = ["Cat", "Dog", "Mosquitoe", "Fly"];
   function clicker () {
     var state = $(this).attr("data-state");
     console.log(state);
-    
     if (state === "still"){
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
@@ -96,102 +92,11 @@ var videogames = ["Cat", "Dog", "Mosquitoe", "Fly"];
  };
 
 
-  $(document).on("click", "#gifImages", clicker);
+  $(document).on("click", "#sportsrock", clicker);
 
   // Function for displaying the topic info
   // Using $(document).on instead of $(".movie").on to add event listeners to dynamically generated elements
-  $(document).on("click", ".animal", displayAnimal);
+  $(document).on("click", ".sport", displaySports);
 
   // Calling the renderButtons function to display the initial buttons
   renderButtons();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $("button").on("click", function() {
-//     // Grabbing and storing the data-animal property value from the button
-//     var animal = $(this).attr("data-animal");
-
-//     // Constructing a queryURL using the animal name
-//     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-//       animal + "&api_key=k0jh54lFDhHqPQvwTH0HM1MtO6WdkwoH";
-
-//     // Performing an AJAX request with the queryURL
-//     $.ajax({
-//       url: queryURL,
-//       method: "GET"
-//     })
-//       // After data comes back from the request
-//       .then(function(response) {
-//         console.log(queryURL);
-
-//         console.log(response);
-//         // storing the data from the AJAX request in the results variable
-//         var results = response.data;
-
-//         // Looping through each result item
-//         for (var i = 0; i < results.length; i++) {
-
-//           // Creating and storing a div tag
-//           var animalDiv = $("<div>");
-
-//           // Creating a paragraph tag with the result item's rating
-//           var p = $("<p>").text("Rating: " + results[i].rating);
-
-//           // Creating and storing an image tag
-//           var animalImage = $("<img>");
-//           // Setting the src attribute of the image to a property pulled off the result item
-//           animalImage.attr("src", results[i].images.fixed_height.url);
-
-//           // Appending the paragraph and image tag to the animalDiv
-//           animalDiv.append(p);
-//           animalDiv.append(animalImage);
-
-//           // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-//           $("#gifs-appear-here").prepend(animalDiv);
-//         }
-//       });
-
-//       function renderButtons() {
-
-//         // Deleting the buttons prior to adding new movies
-//         // (this is necessary otherwise you will have repeat buttons)
-//         $("#buttons-view").empty();
-
-//         // Looping through the array of movies
-//         for (var i = 0; i < results.length; i++) {
-
-//           // Then dynamically generating buttons for each movie in the array
-//           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-//           var a = $("<button>");
-//           // Adding a class of movie to our button
-//           a.addClass("animal");
-//           // Adding a data-attribute
-//           a.attr("data-animal", results[i]);
-//           // Providing the initial button text
-//           a.text(results[i]);
-//           // Adding the button to the buttons-view div
-//           $("#buttons-view").append(a);
-//         }
-//       } 
-//   });

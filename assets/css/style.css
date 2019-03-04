@@ -14,3 +14,21 @@ body{
 div{
     float:left;
 }
+
+button{
+    margin:2px;
+}
+
+img{
+    margin:2px;
+    cursor: pointer; 
+}
+
+p{
+    margin:2px; 
+}
+
+h5{
+    margin-top: 0px;
+    color: rgb(189, 163, 15);
+}
