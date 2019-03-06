@@ -50,7 +50,7 @@ var sports = ["Soccer", "Futbol", "Running", "Mixed Martial Arts", "Karate"];
     $("#buttons-view").empty();
     // Looping through the array of movies
     for (var i = 0; i < sports.length; i++) {
-      // Then dynamically generating buttons for each movie in the array
+      // Then dynamically generating buttons for each sport in the array
       // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
       var a = $("<button class='btn btn-secondary'>");
       // Adding a class of movie to our button
@@ -69,7 +69,7 @@ var sports = ["Soccer", "Futbol", "Running", "Mixed Martial Arts", "Karate"];
     event.preventDefault();
     // This line grabs the input from the textbox
     var sport = $("#animal-input").val().trim();
-    // Adding the movie from the textbox to our array
+    // Adding the sport from the textbox to our array
     sports.push(sport);
     console.log(sports);
     // Calling renderButtons which handles the processing of our movie array
@@ -95,7 +95,7 @@ var sports = ["Soccer", "Futbol", "Running", "Mixed Martial Arts", "Karate"];
   $(document).on("click", "#sportsrock", clicker);
 
   // Function for displaying the topic info
-  // Using $(document).on instead of $(".movie").on to add event listeners to dynamically generated elements
+  // Using $(document).on instead of $(".sport").on to add event listeners to dynamically generated elements
   $(document).on("click", ".sport", displaySports);
 
   // Calling the renderButtons function to display the initial buttons
